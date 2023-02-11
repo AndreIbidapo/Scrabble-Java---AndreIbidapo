@@ -8,5 +8,13 @@ public class Scrabble {
             'J', 8, 'X', 8,
             'Q', 10, 'Z', 10
     );
-
+    public static int calculate(String word) {
+        int score = 0;
+        for (int i = 0; i < word.length(); i++) {
+            score += letterValues.get(Character.toUpperCase(word.charAt(i)));
+        }
+        return score;
+    }
 }
+
+
