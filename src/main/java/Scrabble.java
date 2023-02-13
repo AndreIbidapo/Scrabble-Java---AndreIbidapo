@@ -1,20 +1,53 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class Scrabble {
-    private static final Map<Character, Integer> letterValues = Map.of(
-            'A', 1, 'E', 1, 'I', 1, 'O', 1, 'U', 1, 'L', 1, 'N', 1, 'R', 1, 'S', 1, 'T', 1,
-            'D', 2, 'G', 2,
-            'B', 3, 'C', 3, 'M', 3, 'P', 3,
-            'F', 4, 'H', 4, 'V', 4, 'W', 4, 'Y', 4,
-            'K', 5,
-            'J', 8, 'X', 8,
-            'Q', 10, 'Z', 10
-    );
-    public static int calculate(String word) {
+    private String word;
+    private Map<Character, Integer> letterScores = new HashMap<>();
+
+    public Scrabble(String word) {
+        this.word = word;
+        initializeLetterScores();
+    }
+
+    private void initializeLetterScores() {
+        letterScores.put('a', 1);
+        letterScores.put('e', 1);
+        letterScores.put('i', 1);
+        letterScores.put('o', 1);
+        letterScores.put('u', 1);
+        letterScores.put('l', 1);
+        letterScores.put('n', 1);
+        letterScores.put('r', 1);
+        letterScores.put('s', 1);
+        letterScores.put('t', 1);
+        letterScores.put('d', 2);
+        letterScores.put('g', 2);
+        letterScores.put('b', 3);
+        letterScores.put('c', 3);
+        letterScores.put('m', 3);
+        letterScores.put('p', 3);
+        letterScores.put('f', 4);
+        letterScores.put('h', 4);
+        letterScores.put('v', 4);
+        letterScores.put('w', 4);
+        letterScores.put('y', 4);
+        letterScores.put('k', 5);
+        letterScores.put('j', 8);
+        letterScores.put('x', 8);
+        letterScores.put('q', 10);
+        letterScores.put('z', 10);
+    }
+
+    public int score() {
+        if (word == null || word.isEmpty()) {
+            return 0;
+        }
+        word = word.toLowerCase();
         int score = 0;
         for (int i = 0; i < word.length(); i++) {
-            score += letterValues.get(Character.toUpperCase(word.charAt(i)));
+            score += letterScores.get(word.charAt(i));
         }
         return score;
     }
 }
-
-
